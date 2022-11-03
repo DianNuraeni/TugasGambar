@@ -11,6 +11,7 @@ package com.example.kt1
     import androidx.compose.foundation.Image
     import androidx.compose.foundation.background
     import androidx.compose.foundation.layout.*
+    import androidx.compose.material.MaterialTheme
     import androidx.compose.material.OutlinedTextField
     import androidx.compose.material.Surface
     import androidx.compose.material.Text
@@ -19,6 +20,7 @@ package com.example.kt1
     import androidx.compose.ui.Modifier
     import androidx.compose.ui.graphics.Color
     import androidx.compose.ui.res.painterResource
+    import androidx.compose.ui.res.stringResource
     import androidx.compose.ui.text.font.FontStyle
     import androidx.compose.ui.text.style.TextAlign
     import androidx.compose.ui.tooling.preview.Preview
@@ -29,36 +31,57 @@ package com.example.kt1
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContent {
-                showLogoClub()
+                BelajarAndroidTheme {
+                    //A surface container using the 'background' color from the theme
+                    androidx.compose.material.Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
+                        ComposeQuadrantApp()
+                    }
+                }
             }
         }
     }
-
-    fun getScreenWidth(): Int {
-        return Resources.getSystem().displayMetrics.widthPixels
-    }
-
-    fun getScreenHeight(): Int {
-        return Resources.getSystem().displayMetrics.heightPixels
-    }
-
-    @Preview(showBackground = true, showSystemUi = true)
     @Composable
-    fun showLogoClub() {
-        val surfaceWidth = getScreenWidth() * 0.12681;
-        val surfaceHeight = getScreenHeight() * 0.1905;
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxHeight()
-        ) {
+    fun ComposeQuadrantApp() {
+
+        Column(Modifier.fillMaxWidth()) {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
+               modifier = Modifier.weight(1f)
             ) {
-                Surface(
-                    color = Color(0xff2596be),
-                    modifier = Modifier.size(surfaceWidth.dp, surfaceHeight.dp)
-                ) {
+                ComposableInfoCard(
+                    title = stringResource(R.string.gununghijau),
+                    description = stringResource(R.string.gununghijau_desc),
+                    backgroundColor = color(0xFFe0091f),
+                    modifier = Modifier.weight(1f)
+                )
+                ComposableInfoCard(
+                    title = stringResource(R.string.hutanflorest),
+                    description = stringResource(R.string.hutanflorest_desc),
+                    backgroundColor = color(0xFF388518),
+                    modifier = Modifier.weight(1f)
+                )
+                ComposableInfoCard(
+                    title = stringResource(R.string.lakedanau),
+                    description = stringResource(R.string.lakedanau_desc),
+                    backgroundColor = color.Yellow
+                            modifier = Modifier . weight (1f)
+                )
+            }
+
+            Row(
+                modifier = Modifier.weight(1f)
+            ){
+                ComposableInfoCard(
+                    title = stringResource(R.string.lakedanau),
+                    description = stringResource(R.string.lakedanau_desc),
+                    backgroundColor = color.Yellow
+                            modifier = Modifier . weight (1f)
+                )
+            }
+
+                {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
@@ -121,7 +144,8 @@ package com.example.kt1
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxSize()
-                    ) {
+                    )
+                    {
                         Image(
                             painter = painterResource(id = R.drawable.danau),
                             contentDescription = "Lakedanau",
